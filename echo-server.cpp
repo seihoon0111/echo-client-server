@@ -122,11 +122,11 @@ int main(int argc, char* argv[]) {
 		struct sockaddr_in cli_addr;
 		socklen_t len = sizeof(cli_addr);
 		int cli_sd = accept(sd, (struct sockaddr *)&cli_addr, &len);
-		List.push_back(cli_sd);
 		if (cli_sd == -1) {
 			perror("accept");
 			break;
 		}
+        List.push_back(cli_sd);
 		thread* t = new thread(recvThread, cli_sd);
 		t->detach();
 	}
